@@ -6,14 +6,14 @@ const mediaTracks = [
     { title: "Melodic Techno — In-Game Seamless Loop", file: "assets/audio/media/Melodic Techno — In-Game Seamless Loop.mp3", duration: "0:42" },  
     { title: "Fantasy Adventure — 3 × 30s Adaptive Loops", file: "assets/audio/media/Fantasy Adventure — 3 × 30s Adaptive Loops.mp3", duration: "1:40" },
     { title: "Edm Future Bass — Commercial AD Score", file: "assets/audio/media/Edm Future Bass — Commercial Score.mp3", duration: "0:34" },
-    { title: "Cinematic Ethnic — Audiobook Score", file: "assets/audio/media/Edm Future Bass — Cinematic Ethnic — Audiobook Score.mp3", duration: "0:26" },
+    { title: "Cinematic Ethnic — Audiobook Score", file: "assets/audio/media/Edm Future Bass — Cinematic Ethnic — Audiobook Score.mp3", duration: "0:26" }
 ];
 
 const prodTracks = [
     { title: "Cinematic Pop Trailer — Mobile Legends", file: "assets/audio/production/Cinematic Pop Trailer — Mobile Legends.mp3", duration: "0:45" },
     { title: "Alternative Rock - Studio Production", file: "assets/audio/production/Alternative Rock - Studio Production.mp3", duration: "0:49" },
     { title: "Modern Pop — Studio Accantus", file: "assets/audio/production/Modern Pop — Studio Accantus.mp3", duration: "0:35" },
-    { title: "Hip Hop — Beatmaking", file: "assets/audio/production/Hip Hop — Beatmaking.mp3", duration: "0:40" },
+    { title: "Hip Hop — Beatmaking", file: "assets/audio/production/Hip Hop — Beatmaking.mp3", duration: "0:40" }
 ];
 
 // RECOGNITION (Recensioni)
@@ -30,12 +30,50 @@ const reviews = [
     { name: "S.", role: "Songwriter", text: "Giorgio is like a hidden gem you're thrilled to discover, leaving you torn between keeping it a secret or shouting it from the rooftops. Consider this my quiet shout of appreciation. I won't be mad if you don't hear me." },
     { name: "T.", role: "Music Producer", text: "Another project working with Giorgio, and you will not find a more professional master craftsman. Very meticulous and a perfectionist. Always an honour to work with you. ❤️" },
     { name: "G.", role: "Rapper", text: "The musical genius outdoes himself yet again - BRAVO!" },
-    { name: "A.", role: "Podcast Creator", text: "Giorgio was such a pleasure to work with. I was blown away at the level of professionalism, attention to detail, communication and their talent. I would highly recommend this seller and look forward to working with them again in the future. The finished product was more than I could have hoped for. Thank you!"},
+    { name: "A.", role: "Podcast Creator", text: "Giorgio was such a pleasure to work with. I was blown away at the level of professionalism, attention to detail, communication and their talent. I would highly recommend this seller and look forward to working with them again in the future. The finished product was more than I could have hoped for. Thank you!"}
 
 ];
 
-// Funzione Bio More
-document.getElementById('moreBtn').addEventListener('click', function() {
+const audioEngine = document.getElementById('audioEngine');
+
+function loadPlayer(listId, tracks) {
+    const list = document.getElementById(listId);
+    tracks.forEach(t => {
+        const div = document.createElement('div');
+        div.className = 'track';
+        div.innerHTML = `<span>${t.name}</span><span>${t.time}</span>`;
+        div.onclick = () => {
+            audioEngine.src = t.file;
+            audioEngine.play();
+        };
+        list.appendChild(div);
+    });
+}
+
+function loadReviews() {
+    const track = document.getElementById('reviewTrack');
+    reviews.forEach(r => {
+        const div = document.createElement('div');
+        div.className = 'review-item';
+        div.innerHTML = `<div class="rev-name">${r.name}</div><blockquote>"${r.text}"</blockquote>`;
+        track.appendChild(div);
+    });
+}
+
+let currentSlide = 0;
+function moveSlide(dir) {
+    const track = document.getElementById('reviewTrack');
+    const isMobile = window.innerWidth <= 900;
+    const totalSlides = isMobile ? reviews.length : reviews.length / 3;
+    
+    currentSlide += dir;
+    if (currentSlide < 0) currentSlide = totalSlides - 1;
+    if (currentSlide >= totalSlides) currentSlide = 0;
+    
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+}
+
+document.getElementById('moreBtn').onclick = function() {
     const extra = document.getElementById('extraBio');
     if (extra.style.display === "block") {
         extra.style.display = "none";
@@ -44,6 +82,11 @@ document.getElementById('moreBtn').addEventListener('click', function() {
         extra.style.display = "block";
         this.innerText = "LESS -";
     }
-});
+};
 
-// [Qui aggiungerò il codice per far funzionare i player e il carosello una volta caricati i file]
+window.onload = () => {
+    loadPlayer('mediaList', mediaTracks);
+    loadPlayer('prodList', prodTracks);
+    loadReviews();
+    setInterval(() => moveSlide(1), 10000);
+};
