@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giorgio Satta | Composer & Producer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <img src="assets/img/logo.png" alt="" class="logo">
+                <span class="nav-name">GIORGIO SATTA</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#bio">BIO</a></li>
+                    <li><a href="#works">WORKS</a></li>
+                    <li><a href="#reviews">REVIEWS</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="assets/video/hero-video.mp4" type="video/mp4">
+        </video>
+    </section>
+
+    <section id="bio" class="bio-section">
+        <div class="bio-container">
+            <div class="bio-image">
+                <img src="assets/img/foto-bio.jpg" alt="Giorgio Satta">
+            </div>
+            <div class="bio-text">
+                <p class="main-bio">Giorgio Satta is a composer and producer with a broad international background, shaped by hundreds of collaborations across music, gaming and digital media. His work draws on a diverse musical foundation spanning classical music, electronic music and rock, allowing him to move seamlessly between different genres, creative languages and production approaches...</p>
+                <button id="moreBtn">MORE +</button>
+                <div id="extraBio" class="hidden-bio">
+                    <p>Graduating with highest honors, distinction and special mention from the Alessandro Scarlatti Conservatory of Palermo... [IL RESTO DEL TESTO CHE MI HAI DATO]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="works" class="works-section">
+        <h2 class="section-title">SELECTED WORKS</h2>
+        <div class="players-grid">
+            <div class="player-container">
+                <h3>Soundtracks & Media</h3>
+                <div class="audio-list" id="media-list"></div>
+            </div>
+            <div class="player-container">
+                <h3>Music Production</h3>
+                <div class="audio-list" id="prod-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews-section">
+        <h2 class="section-title">WHAT THEY SAY</h2>
+        <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack"></div>
+            <div class="carousel-controls">
+                <button id="prevBtn">←</button>
+                <button id="nextBtn">→</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="clients" class="clients-section">
+        <h2 class="section-title">AMONG MY CLIENTS</h2>
+        <div class="clients-grid">
+            <img src="assets/img/bytedance.png" alt="ByteDance">
+            <img src="assets/img/leonardo.png" alt="Leonardo">
+            <img src="assets/img/moonton.png" alt="Moonton">
+            <img src="assets/img/lilith.png" alt="Lilith Games">
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">CONTACT</h2>
+        <form action="https://formspree.io/f/TUO_ID" method="POST" class="contact-form">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <textarea name="message" placeholder="Project details" rows="5" required></textarea>
+            <button type="submit">SEND MESSAGE</button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
